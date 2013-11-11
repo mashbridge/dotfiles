@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function doIt() {
+  cd "$(dirname "$0")"
+  #git pull
+  rsync --exclude ".git/" --exclude ".DS_Store" \
+    --exclude "sync_dotfiles" --exclude "README.md" -av . ~
+}
+
+read -p "May overwrite base dotfiles. Proceed? (y/n) " -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  doIt
+fi
+unset doIt
+source ~/.bash_profile
