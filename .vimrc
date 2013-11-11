@@ -30,8 +30,9 @@ set softtabstop=2
 
 " Let's give indentation one more try:
 set autoindent
-" Makefiles need tabs.
+" Makefiles and friends need tabs.
 autocmd FileType make setlocal noet sw=8 sts=8
+autocmd FileType config setlocal noet sw=8 sts=8
 " Go too, although gofmt enforces this.
 autocmd FileType go setlocal noet sw=8 sts=8
 
