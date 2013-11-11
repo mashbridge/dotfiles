@@ -45,4 +45,4 @@ INVERT="$(tput sgr 1 0)"
 NOCOLOR="$(tput sgr0)"
 
 # $PATH
-export PATH='$HOME/bin:$GOROOT/bin:$GOPATH/bin:/usr/local/bin:$PATH'
+export PATH="$HOME/bin:$GOROOT/bin:$GOPATH/bin:/usr/local/bin:$PATH"
