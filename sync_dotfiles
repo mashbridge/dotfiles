@@ -1,16 +1,38 @@
-#!/bin/bash
+#!/bin/zsh
+#
+# Idempotent, safe symlinking of config files.
 
-function doIt() {
-  cd "$(dirname "$0")"
-  #git pull
-  rsync --exclude ".git/" --exclude ".DS_Store" \
-    --exclude "sync_dotfiles" --exclude "README.md" -av . ~
+DOTFILES_DIR=$(cd "$(dirname "$0")" && pwd)
+
+link_file() {
+    local src="$1"
+    local dest="$2"
+
+    mkdir -p "$(dirname "$dest")"
+
+    if [[ -f "$dest" && ! -L "$dest" ]]; then
+        echo "  Backing up existing file: $dest to $dest.bak"
+        mv "$dest" "$dest.bak"
+    fi
+
+    # Create the symlink (-s), forcing it (-f) to update if it exists.
+    ln -sf "$src" "$dest"
+    echo "Linked: $dest -> $src"
 }
 
-read -p "May overwrite base dotfiles. Proceed? (y/n) " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  doIt
-fi
-unset doIt
-source ~/.bash_profile
+echo "Starting dotfile synchronization..."
+
+# --- Mappings ---
+# link_file "SOURCE_IN_REPO" "TARGET_DESTINATION"
+
+# Home directory files
+link_file "$DOTFILES_DIR/.vimrc" "$HOME/.vimrc"
+link_file "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
+link_file "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+
+# .config directory files
+link_file "$DOTFILES_DIR/starship.toml" "$HOME/.config/starship.toml"
+link_file "$DOTFILES_DIR/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+link_file "$DOTFILES_DIR/ghostty-dark.theme" "$HOME/.config/ghostty/themes/ghostty-dark.theme"
+
+echo "Done. Restart your shell or source your config files."
