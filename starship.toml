@@ -1,0 +1,64 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = 'mashbridge'
+
+add_newline = true
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$battery\
+$cmd_duration\
+$line_break\
+$character
+"""
+
+[username]
+show_always = true
+format = '[% $user ]($style)'
+style_user = 'green'
+style_root = 'bold red'
+
+[directory]
+format = "[❯ $path ]($style)"
+style = 'peach'
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = ""
+format = '[[❯ $symbol $branch ](fg:yellow)]($style)'
+
+[git_status]
+format = '[[($all_status$ahead_behind )](fg:yellow)]($style)'
+
+[battery]
+format = "[❯ $symbol$percentage ]($style)"
+
+[[battery.display]]
+threshold = 20
+style = 'bold red'
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:green)'
+error_symbol = '[❯](bold fg:red)'
+
+[cmd_duration]
+disabled = false
+show_milliseconds = true
+min_time = 1000
+format = "[❯ 󱫌 $duration ]($style)"
+style = 'bold red'
+
+[line_break]
+disabled = false
+
+[palettes.mashbridge]
+red = "#f38ba8"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+blue = "#89b4fa"

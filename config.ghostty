@@ -1,0 +1,7 @@
+cursor-style-blink = true
+font-size = 14 
+macos-titlebar-style = tabs
+split-divider-color = #666666
+theme = ghostty-dark.theme
+window-save-state = always
+
