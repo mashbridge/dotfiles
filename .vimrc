@@ -70,3 +70,12 @@ autocmd BufReadPost *
   \ |   exe "normal! g`\""
   \ | endif
 
+" Enable backups.
+set backup
+if !isdirectory(expand($HOME . "/.vimbak"))
+    silent! call mkdir(expand($HOME . "/.vimbak"), "p")
+endif
+" // ensures unique filenames from dupes with different paths.
+set backupdir=$HOME/.vimbak//
+set writebackup
+
