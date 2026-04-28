@@ -13,5 +13,3 @@ export FLUTTER_HOME=$HOME/development/flutter
 export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
-export PATH=$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin/:$FLUTTER_HOME/bin:$ANDROID_SDK/build-tools/36.0.0:$ANDROID_HOME:/opt/homebrew/lib/ruby/gems/3.4.0/bin:/opt/homebrew/opt/ruby/bin:$PATH
-
