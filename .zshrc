@@ -22,5 +22,8 @@ setopt hist_verify
 alias vi='/opt/homebrew/bin/vim'
 alias vim=vi
 
+alias gst='git status'
+alias gd='git diff'
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
